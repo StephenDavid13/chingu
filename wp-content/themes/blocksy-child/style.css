@@ -1,0 +1,30 @@
+/**
+ * Theme Name: Blocksy Child
+ * Description: Blocksy Child theme
+ * Author: Creative Themes
+ * Template: blocksy
+ * Text Domain: blocksy
+ */
+
+ /* CSS to style the range input */
+input#chinguRange {
+    height: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #ddd; 
+  }
+  
+input#chinguRange::-webkit-slider-runnable-track {
+    background-color: #ffa602;
+}
+  
+input#chinguRange::-webkit-slider-thumb {
+    background-color: #ffa602;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+  
