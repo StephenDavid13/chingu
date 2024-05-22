@@ -6,14 +6,14 @@ function how_many_chingus_shortcode() {
             display: flex;
             margin: 20px auto;
             text-align: center;
-            align-items: flex-end;
+            align-items: flex-start;
             gap: 25px 10vw;
         }
 
         .chinguRange-inputs {
             width: 100%;
             min-width: 500px;
-            min-height: 155px;
+            min-height: 125px;
             align-content: end;
 
         }
@@ -38,17 +38,28 @@ function how_many_chingus_shortcode() {
             overflow: hidden;
             -webkit-appearance: none;
             appearance: none;
-            background-color: #fdda4c; 
+            background-color: #fdda4c;
             width: 100%;
         }
 
-        .fas.fa-glass-whiskey {
-            color: #ffffff;
-            font-size: 80px;
-            margin: 50px 0;
+        .range-icons {
+            position: relative;
+            width: 100%;
         }
 
-        @media screen and (-webkit-min-device-pixel-ratio:0) {         
+        .icon {
+            color: #ffffff;
+            position: absolute;
+            bottom: -20px;
+            transform: translateX(-50%);
+        }
+
+        .chinguRange-solutions img {
+            height: 110px !important;
+            margin-top: -20px;
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
             input#chinguRange::-webkit-slider-runnable-track {
                 height: 20px;
                 -webkit-appearance: none;
@@ -89,27 +100,47 @@ function how_many_chingus_shortcode() {
             appearance: none;
             cursor: pointer;
         }
+
+        @media screen and (max-width: 600px) {
+            .chinguRange-inputs #chinguRange-title {
+                font-size: 26px;
+            }
+
+            .chinguRange-inputs #chinguRange-subtitle {
+                font-size: 13px;
+            }
+
+            .chinguRange-solutions h4 {
+                font-size: 26px;
+                margin: 10px 0 -10px;
+            }
+        }
     </style>
 
     <div class="chinguRange">
         <div class="chinguRange-inputs">
-            <h3 id="chinguRange-title">I'll have a couple</h3>
+            <h3 id="chinguRange-title">I'll have a few drinks</h3>
             <h5 id="chinguRange-subtitle">Consume one gel after drinking</h5>
-            <input type="range" id="chinguRange" min="1" max="100" value="25">
+            <input type="range" id="chinguRange" min="1" max="100" value="5">
+            <div class="range-icons">
+                <div class="icon" style="left: 2%;"><i id="oneThirdGlass" class="fas fa-glass-whiskey fa-lg" style="color: #ffa602;"></i></div>
+                <div class="icon" style="left: 50%;"><i id="twoThirdGlass" class="fas fa-glass-whiskey fa-lg"></i></div>
+                <div class="icon" style="right: -2%;"><i id="oneHundredGlass" class="fas fa-glass-whiskey fa-lg"></i></div>
+            </div>
         </div>
         <div class="chinguRange-solutions">
             <div id="beforeDrinking">
                 <h4>Before drinking</h4>
-                <i id="beforeDrinkingIcon" class="fas fa-glass-whiskey fa-lg"></i>
+                <img id="beforeDrinkingIcon" src="http://chingustore.com/wp-content/uploads/2024/05/chingu.svg" style="opacity:0.25;" />
             </div>
             <div id="duringDrinking">
                 <h4>During drinking</h4>
-                <i id="duringDrinkingIcon" class="fas fa-glass-whiskey fa-lg"></i>
+                <img id="duringDrinkingIcon" src="http://chingustore.com/wp-content/uploads/2024/05/chingu.svg" style="opacity:0.25;" />
             </div>
                 <div id="afterDrinking">
                 <h4>After drinking</h4>
-                <i id="afterDrinkingIcon" class="fas fa-glass-whiskey fa-lg" style="color: #ffa602;"></i>
-            </div>
+                <img id="afterDrinkingIcon" src="http://chingustore.com/wp-content/uploads/2024/05/chingu.svg" />
+           </div>
         </div>
     </div>
     <script>
@@ -124,24 +155,33 @@ function how_many_chingus_shortcode() {
                 var value = parseInt(this.value);
 
                 // Example logic to change CSS of divs based on range input value
-                if (value <= 33) {
-                    chinguRangeTitle.innerText = "I'll have a couple";
+                if (value <= 40) {
+                    chinguRangeTitle.innerText = "I'll have a few drinks";
                     chinguRangeSubtitle.innerText = "Consume one gel after drinking";
+                    document.getElementById('oneThirdGlass').style.color = '#ffa602';
+                    document.getElementById('twoThirdGlass').style.color = '#ffffff';
+                    document.getElementById('oneHundredGlass').style.color = '#ffffff';
 
-                    beforeDrinking.style.color = '#fff';
-                    duringDrinking.style.color = '#fff';
-                } else if( value >= 66) {
-                    chinguRangeTitle.innerText = "I'm on a Bender";
-                    chinguRangeSubtitle.innerText = "Consume one before, during, and after drinking";
+                    beforeDrinking.style.opacity = '0.25';
+                    duringDrinking.style.opacity = '0.25';
+                } else if( value >= 80) {
+                    chinguRangeTitle.innerText = "I'm on a bender";
+                    chinguRangeSubtitle.innerText = "Consume one gel before, during, and after drinking";
+                    document.getElementById('oneThirdGlass').style.color = '#ffa602';
+                    document.getElementById('twoThirdGlass').style.color = '#ffa602';
+                    document.getElementById('oneHundredGlass').style.color = '#ffa602';
                     
-                    beforeDrinking.style.color = '#ffa602';
-                    duringDrinking.style.color = '#ffa602';
+                    beforeDrinking.style.opacity = '1';
+                    duringDrinking.style.opacity = '1';
                 } else {
                     chinguRangeTitle.innerText = "I'm getting lit";
-                    chinguRangeSubtitle.innerText = "Consume one before and after drinking";
+                    chinguRangeSubtitle.innerText = "Consume one gel before and after drinking";
+                    document.getElementById('oneThirdGlass').style.color = '#ffa602';
+                    document.getElementById('twoThirdGlass').style.color = '#ffa602';
+                    document.getElementById('oneHundredGlass').style.color = '#ffffff';
 
-					beforeDrinking.style.color = '#ffa602';
-                    duringDrinking.style.color = '#fff';
+					beforeDrinking.style.opacity = '1';
+                    duringDrinking.style.opacity = '0.25';
 				}
             });
         });
